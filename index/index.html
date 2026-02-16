@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Mágica - Zoe Yojana 🎂</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #f9c1d9 0%, #f5b0cc 50%, #ffd9e8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo con confeti animado */
+        body::before {
+            content: "🎉🎊🎈🎂🎁🎈🎊🎉";
+            font-size: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            pointer-events: none;
+            animation: floatConfetti 20s linear infinite;
+            color: #ff9eb5;
+        }
+
+        @keyframes floatConfetti {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(10deg); }
+        }
+
+        .invitation-card {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 60px 60px 50px 50px;
+            box-shadow: 0 30px 50px rgba(255, 105, 150, 0.3), 
+                        0 0 0 3px #fff inset, 
+                        0 0 0 6px #ffb3c6 inset,
+                        0 20px 0 #d46b8f;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 10;
+            border: 3px solid #ffe5f0;
+        }
+
+        .invitation-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 40px 60px rgba(255, 80, 140, 0.4), 
+                        0 0 0 3px #fff inset, 
+                        0 0 0 6px #ff9eb5 inset,
+                        0 25px 0 #b85b7a;
+        }
+
+        /* Estilos para el control de música */
+        .music-player {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 20px;
+            border-radius: 60px;
+            margin: 0 30px 20px 30px;
+            border: 3px solid white;
+            box-shadow: 0 6px 0 #ff9eb5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .music-player span {
+            font-size: 1.3rem;
+            color: #a64d79;
+            font-weight: 600;
+        }
+
+        .music-player audio {
+            height: 40px;
+            width: 220px;
+            border-radius: 30px;
+        }
+
+        /* Los demás estilos se mantienen igual que en tu versión anterior */
+        .header {
+            background: linear-gradient(135deg, #ff9eb5, #ffb8c9, #ffd3e0);
+            padding: 45px 20px 35px;
+            color: white;
+            text-shadow: 3px 3px 0 #ff7a9e, 5px 5px 0 rgba(0,0,0,0.1);
+            position: relative;
+            border-bottom: 5px dashed #fff3f7;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+        }
+
+        .header::before, .header::after {
+            font-size: 100px;
+            position: absolute;
+            opacity: 0.4;
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        .header::before {
+            content: "🦄";
+            top: 0px;
+            left: 10px;
+            transform: rotate(-15deg);
+            animation-delay: 0.2s;
+        }
+
+        .header::after {
+            content: "✨";
+            bottom: 10px;
+            right: 20px;
+            transform: rotate(15deg);
+            font-size: 120px;
+            animation-delay: 0.7s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-15deg); }
+            50% { transform: translateY(-15px) rotate(-10deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 3px 3px 0 #ff7a9e, 5px 5px 0 rgba(0,0,0,0.1); }
+            50% { text-shadow: 5px 5px 0 #ff4d7a, 8px 8px 0 rgba(0,0,0,0.1); }
+        }
+
+        .header h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding: 12px 40px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            border: 3px solid white;
+            box-shadow: 0 5px 0 #ff9eb5;
+            color: #9b4b6e;
+        }
+
+        .content {
+            padding: 40px 35px;
+            background: radial-gradient(circle at 10% 30%, rgba(255,225,240,0.5) 0%, transparent 30%),
+                        radial-gradient(circle at 90% 70%, rgba(255,200,220,0.5) 0%, transparent 30%);
+        }
+
+        .celebrant-name {
+            font-size: 4.2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff4d7a, #ff85a8, #ffb3c6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 10px 0 5px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(255, 105, 150, 0.3);
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { filter: drop-shadow(0 0 5px #ffb3c6); }
+            50% { filter: drop-shadow(0 0 15px #ff7a9e); }
+        }
+
+        .age-tag {
+            font-size: 2.2rem;
+            color: #a64d79;
+            margin-bottom: 25px;
+        }
+
+        .age-tag span {
+            background: linear-gradient(145deg, #ffe5f0, #fff0f5);
+            padding: 10px 30px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 3px solid white;
+            box-shadow: 0 6px 0 #ff9eb5, 0 10px 15px rgba(255, 150, 180, 0.3);
+            font-weight: 600;
+            transform: rotate(-1deg);
+        }
+
+        .balloons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 3.5rem;
+            margin: 20px 0 15px;
+            filter: drop-shadow(0 10px 8px #ffb3c6);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .balloons span {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .balloons span:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .details {
+            background: rgba(255, 240, 245, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 70px 70px 50px 50px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 4px solid white;
+            box-shadow: 0 12px 0 #ff9eb5, 0 20px 25px rgba(255, 130, 160, 0.2);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.4rem;
+            margin: 25px 0;
+            color: #7a4d62;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 60px;
+            border: 2px solid #ffe2ed;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateX(5px) scale(1.02);
+            box-shadow: 0 5px 10px rgba(255, 120, 160, 0.3);
+            border-color: #ffb3c6;
+        }
+
+        .detail-item .emoji {
+            font-size: 2.5rem;
+            background: linear-gradient(145deg, #ffe5f0, white);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 0 #ff9eb5, 0 5px 10px #ffb3c6;
+            border: 3px solid white;
+        }
+
+        .detail-item p {
+            margin: 0;
+            text-align: left;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .detail-item strong {
+            color: #ff4d7a;
+            display: block;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+
+        .rsvp-button {
+            background: linear-gradient(45deg, #ff4d7a, #ff85a8, #ffb3c6);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 22px 45px;
+            border-radius: 80px;
+            cursor: pointer;
+            margin: 25px 0 15px;
+            box-shadow: 0 15px 0 #b85b7a, 0 10px 25px rgba(255, 77, 122, 0.5);
+            transition: 0.15s ease;
+            border: 4px solid white;
+            width: 100%;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-button::before {
+            content: "🎀";
+            font-size: 30px;
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: left 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .rsvp-button::after {
+            content: "🎀";
+            font-size: 30px;
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: right 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .rsvp-button:hover::before {
+            left: 15px;
+        }
+
+        .rsvp-button:hover::after {
+            right: 15px;
+        }
+
+        .rsvp-button:hover {
+            transform: translateY(5px);
+            box-shadow: 0 10px 0 #b85b7a, 0 15px 30px rgba(255, 77, 122, 0.6);
+            background: linear-gradient(45deg, #ff3d6a, #ff75a0, #ffa3bb);
+        }
+
+        .rsvp-button:active {
+            transform: translateY(12px);
+            box-shadow: 0 5px 0 #b85b7a, 0 10px 20px rgba(255, 77, 122, 0.6);
+        }
+
+        .note {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            background: linear-gradient(145deg, #fff0f7, #ffe5f0);
+            padding: 20px;
+            border-radius: 50px;
+            color: #a64d79;
+            border: 4px dotted #ff9eb5;
+            font-weight: 600;
+            line-height: 1.8;
+            box-shadow: 0 8px 0 #ffb3c6;
+        }
+
+        .footer {
+            background: linear-gradient(90deg, #ffc1d4, #ffd9e8, #ffc1d4);
+            padding: 20px;
+            font-size: 1.2rem;
+            color: #8b4e6b;
+            border-top: 6px solid white;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.5rem; }
+            .header h2 { font-size: 1.6rem; padding: 8px 25px; }
+            .celebrant-name { font-size: 3rem; }
+            .age-tag { font-size: 1.8rem; }
+            .detail-item { flex-direction: column; text-align: center; gap: 10px; }
+            .detail-item p { text-align: center; }
+            .detail-item .emoji { width: 60px; height: 60px; font-size: 2rem; }
+            .rsvp-button { font-size: 1.5rem; padding: 15px; }
+            .rsvp-button::before, .rsvp-button::after { display: none; }
+            .music-player {
+                flex-direction: column;
+                padding: 12px;
+            }
+            .music-player audio {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-card">
+        <div class="header">
+            <h1>✨¡Estás invitada!✨</h1>
+            <h2>🎀 Mi Cumpleaños 🎀</h2>
+        </div>
+
+        <div class="content">
+            <div class="celebrant-name">
+                Zoe Yojana
+            </div>
+            <div class="age-tag">
+                <span>🌸 ¡Celebramos mis 9 añitos! 🌸</span>
+            </div>
+
+            <div class="balloons">
+                <span>🦄</span><span>🎈</span><span>🎈</span><span>🎈</span><span>🦄</span>
+            </div>
+
+            <!-- 🎵 NUEVO: Reproductor de música integrado -->
+          <!-- Reemplaza el audio oculto con este código -->
+<div class="music-player">
+    <span>🎵 Música de fondo</span>
+    <audio controls loop>
+        <source src="c:/Users/Usuario/Downloads/prodjoseph-hi-318956.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+</div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <div class="emoji">📅🌸</div>
+                    <p><strong>Fecha </strong> Jueves 19 de febrero</p>
+                </div>
+            
+                <div class="detail-item">
+                    <div class="emoji">📍🏫</div>
+                    <p><strong>Lugar </strong> Salón de clases <br><span style="font-size: 0.9rem; color:#ff7a9e;">(Escuela Primaria - aula de 3° grado)</span></p>
+                </div>
+
+                <div class="detail-item">
+                    <div class="emoji">⏰✨</div>
+                    <p><strong>Hora </strong> sorpresa </p>
+                </div>
+            </div>
+
+            <button class="rsvp-button" onclick="confirmarAsistencia(this)">
+                ✨ Confirmar Asistencia ✨
+            </button>
+
+            <div class="note">
+                🧁🧋🍰 ¡Trae muchas ganas de jugar y compartir! <br>
+                🎨 Habrá pastel, sorpresas, glitter y mucha diversión 🎨
+            </div>
+
+            <div class="balloons" style="margin: 20px 0 5px;">
+                <span>🎂</span><span>🎉</span><span>🎁</span><span>✨</span><span>🧁</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            🌟💖 ¡Te esperamos para hacer de este día algo mágico e inolvidable! 💖🌟
+        </div>
+    </div>
+
+    <script>
+        function confirmarAsistencia(boton) {
+            // Interacción divertida mejorada
+            boton.textContent = "✅ ¡Gracias por confirmar, te esperamos! ✅";
+            boton.style.background = "linear-gradient(45deg, #7ac1a4, #9fd9b9, #c2eed3)";
+            boton.style.boxShadow = "0 12px 0 #3f8b6b, 0 10px 25px rgba(63, 139, 107, 0.5)";
+            
+            // Mensaje de confirmación
+            setTimeout(() => {
+                alert("🎉💖 ¡Qué emoción! Zoe estará feliz de verte. Prepara tu mejor sonrisa y muchas ganas de divertirte. ¡Nos vemos! 💖🎉");
+            }, 300);
+
+            // Confeti virtual
+            crearConfeti();
+        }
+
+        function crearConfeti() {
+            for (let i = 0; i < 15; i++) {
+                const confeti = document.createElement('div');
+                confeti.style.position = 'fixed';
+                confeti.style.left = Math.random() * 100 + '%';
+                confeti.style.top = '-20px';
+                confeti.style.width = '15px';
+                confeti.style.height = '25px';
+                confeti.style.background = `hsl(${Math.random() * 50 + 320}, 80%, 70%)`;
+                confeti.style.borderRadius = '50% 50% 0 0';
+                confeti.style.zIndex = '9999';
+                confeti.style.pointerEvents = 'none';
+                confeti.style.animation = `confettiFall ${Math.random() * 3 + 2}s ease-in forwards`;
+                document.body.appendChild(confeti);
+
+                setTimeout(() => {
+                    confeti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</body>
+</html>
